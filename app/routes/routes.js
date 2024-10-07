@@ -6,7 +6,7 @@ const { webPushRoutes } = require('../modules/webpush/webpush.routes')
 const router = require('express').Router()
 
 router.use('/auth', authRoutes)
-router.use('/user', AuthGuard, userRoutes)
+router.use('/user', userRoutes)
 router.use('/web-push', AuthGuard, webPushRoutes)
 
 module.exports = {
