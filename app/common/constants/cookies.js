@@ -5,7 +5,8 @@ const cookieOptions = {
     httpOnly: true,
     secure: true,
     signed: true,
-    sameSite: process.env.NODE_ENV === constants.Production ? 'None' : 'None',
+    domain: ".vercel.app",
+    sameSite: process.env.NODE_ENV === constants.Production ? 'None' : 'Lax',
 }
 
 const cookieNames = {
