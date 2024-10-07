@@ -3,9 +3,9 @@ const constants = require("./constants")
 
 const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === constants.production,
+    secure: true,
     signed: true,
-    sameSite: process.env.NODE_ENV === constants.Production ? 'None' : 'Lax',
+    sameSite: process.env.NODE_ENV === constants.Production ? 'None' : 'None',
 }
 
 const cookieNames = {
