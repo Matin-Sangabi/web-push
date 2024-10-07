@@ -11,10 +11,7 @@ async function hashPassword(password) {
 
 async function verifyPassword(password, hashPassword) {
     const hashedPassword = hashPassword
-    console.log(hashedPassword)
     const verify = await bcrypt.compareSync(password, hashedPassword)
-
-    console.log(verify)
 
     return verify
 }

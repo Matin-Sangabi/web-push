@@ -21,6 +21,7 @@ module.exports = class Application {
         this.corsOptions()
         this.cookieParserConfig()
         this.createRoutes()
+        this.webpushConfig()
         this.createServer()
         this.errorHandling()
     }
@@ -43,6 +44,11 @@ module.exports = class Application {
 
     cookieParserConfig() {
         this.#app.use(cookieParser(this.#COOKIE_PARSER))
+    }
+
+
+    webpushConfig () {
+        require("./config/webpush")
     }
 
     createServer() {
