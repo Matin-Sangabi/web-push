@@ -6,7 +6,7 @@ const cookieOptions = {
     signed: true,
     sameSite: process.env.NODE_ENV === constants.production ? 'None' : 'Lax',
     secure: process.env.NODE_ENV === constants.production,
-    domain: 'next-notifiction.vercel.app',
+    domain: 'web-push-ashy.vercel.app',
     path: '/',
 }
 
