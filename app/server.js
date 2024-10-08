@@ -35,7 +35,7 @@ module.exports = class Application {
 
     corsOptions() {
         const corsOptions = {
-            origin: 'https://next-notifiction.vercel.app',
+            origin: true,
             credentials: true,
             allowedHeaders: ['Content-Type', 'Authorization'],
         }

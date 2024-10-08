@@ -1,32 +1,37 @@
-const cookieParser = require('cookie-parser')
 const createHttpError = require('http-errors')
 const { verifyJwt } = require('../jwt/jwt')
 const { userModel } = require('../../models/users')
 
 async function AuthGuard(req, res, next) {
     try {
-        const access_token = req?.signedCookies['access_token']
-        const token = cookieParser.signedCookie(
-            access_token,
-            process.env.COOKIE_PARSER_SECRET_KEY
-        )
-        if (!token) {
-            throw createHttpError.Unauthorized('not find token')
-        }
-        const data = verifyJwt(token)
-        if (typeof data === 'object' && 'id' in data) {
-            const user = await userModel.findById(data?.id, { _id: 1 }).lean()
+        const access = req.headers?.authorization
+        console.log(access)
+        if (access) {
+            const token = access.split(' ')[1]
 
-            if (!user) {
-                throw createHttpError.Unauthorized(
-                    'not find user or valid token'
-                )
+            if (!token) {
+                throw createHttpError.Unauthorized('not find token')
             }
-            req.user = user
-            next()
+            const data = verifyJwt(token)
+            if (typeof data === 'object' && 'id' in data) {
+                const user = await userModel
+                    .findById(data?.id, { _id: 1 })
+                    .lean()
+                if (!user) {
+                    throw createHttpError.Unauthorized(
+                        'not find user or valid token'
+                    )
+                }
+                req.user = user
+                return next()
+            }
         }
+        throw createHttpError.Unauthorized('not find user or valid token')
     } catch (error) {
-        next(error)
+        if (!res.headersSent) {
+            next(error) 
+        }
+
     }
 }
 
