@@ -1,10 +1,10 @@
 const constants = require('./constants')
 
 const cookieOptions = {
-    maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
+    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
     signed: true,
-    sameSite: "None",
+    sameSite: 'None',
     secure: process.env.NODE_ENV === constants.production,
     domain: 'web-push-ashy.vercel.app',
     path: '/',
