@@ -4,7 +4,7 @@ const cookieOptions = {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
     signed: true,
-    sameSite: process.env.NODE_ENV === constants.production ? 'None' : 'Lax',
+    sameSite: "None",
     secure: process.env.NODE_ENV === constants.production,
     domain: 'web-push-ashy.vercel.app',
     path: '/',
