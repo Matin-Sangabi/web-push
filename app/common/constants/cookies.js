@@ -1,13 +1,13 @@
-const constants = require("./constants")
-
+const constants = require('./constants')
 
 const cookieOptions = {
-     maxAge: 1000 * 60 * 60 * 24,
-          httpOnly: true,
-          signed: true,
-          sameSite: process.env.NODE_ENV === constants.production ? "None" : "Lax",
-          secure: process.env.NODE_ENV === constants.production,
-          path: "/",
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+    signed: true,
+    sameSite: process.env.NODE_ENV === constants.production ? 'None' : 'Lax',
+    secure: process.env.NODE_ENV === constants.production,
+    domain: '.vercel.app',
+    path: '/',
 }
 
 const cookieNames = {
